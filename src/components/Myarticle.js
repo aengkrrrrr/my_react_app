@@ -2,6 +2,7 @@ import { Component } from 'react';
 
 class Myarticle extends Component {
   render(){
+    console.log("Myarticle 실행");
     return (
     <section>
       <article>

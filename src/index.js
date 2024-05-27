@@ -5,8 +5,8 @@ import App from './App'; //App.js인데 생략한 것 (컴포넌트만 생략가
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode> 
     <App />
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
