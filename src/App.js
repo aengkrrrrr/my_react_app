@@ -1,55 +1,35 @@
 import { Component } from 'react';
 import './App.css';
+import Myheader from './components/Myheader';
+import Mynav from './components/Mynav';
+import Myarticle from './components/Myarticle';
 
 
 // 클래스 버전
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      subject:{
+        title:'React',
+        desc:'Single Page Application'
+      },
+      menus:[
+        {id:1, title:'HTML', desc:'Hypertext markup language'},
+        {id:2, title:'CSS', desc:'Css is for design'},
+        {id:3, title:'JAVASCRIPT', desc:'javascript is for interaction'},
+      ]
+    };
+  }
+
   render(){
    
     return (
       <div className="App">
-        <Myheader title="React" desc="Single Page Application"/>
-        <Mynav/>
-        <Myarticle/>
+        <Myheader title={this.state.subject.title} desc={this.state.subject.desc}/>
+        <Mynav data={this.state.menus}/>
+        <Myarticle subtit="HTML" content="Hypertext markup language"/>
        </div>
-    );
-  }
-}
-
-class Myheader extends Component {
-  render(){
-    console.log(this)
-    return (
-      <header>
-        <h1 class="logo">{this.props.title}</h1>
-        <p>{this.props.desc}</p>
-      </header>
-      //빈 프레그먼트로 부모 대체가능 = <> </>
-    );
-  }
-}
-class Mynav extends Component {
-  render(){
-    return (
-      <nav>
-      <ul>
-        <li><a href="">HTML</a></li>
-        <li><a href="">CSS</a></li>
-        <li><a href="">JAVASCRIPT</a></li>
-      </ul>
-    </nav>
-    );
-  }
-}
-class Myarticle extends Component {
-  render(){
-    return (
-    <section>
-      <article>
-        <h2>HTML</h2>
-        <p>Hypertext markup language</p>
-      </article>
-    </section>
     );
   }
 }
