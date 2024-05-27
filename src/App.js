@@ -31,8 +31,8 @@ class App extends Component {
     console.log("App 실행");
    let _title, _desc =null;
    if(this.state.mode === 'welcome'){
-    _title = this.state.welcome.title;
-    _desc = this.state.welcome.desc;
+    _title = this.state.welcome.subtit;
+    _desc = this.state.welcome.content;
    } else if(this.state.mode === 'read') {
     _title = this.state.menus[0].title;
     _desc = this.state.menus[0].desc;
