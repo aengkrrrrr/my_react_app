@@ -10,7 +10,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      mode:'read',
+      mode:'welcome',
+      selected_id:2,
       subject:{
         title:'React',
         desc:'Single Page Application'
@@ -34,33 +35,28 @@ class App extends Component {
     _title = this.state.welcome.subtit;
     _desc = this.state.welcome.content;
    } else if(this.state.mode === 'read') {
-    _title = this.state.menus[0].title;
-    _desc = this.state.menus[0].desc;
+    let i=0;
+    while(i<this.state.menus.length){
+      let data = this.state.menus[i];
+      if(data.id === this.state.selected_id){
+        _title = data.title;
+        _desc = data.desc;
+      }
+      i++;
+    }
+
    }
     return (
       <div className="App">
-        {/* <Myheader title={this.state.subject.title} desc={this.state.subject.desc}/> */}
-
-        <header>
-        <h1 className="logo">
-          {/* <a href="" onClick={function(e){
-            e.preventDefault();
-            this.setState({mode: 'welcome'});
-          }.bind(this)}> */}
-
-           <a href="" onClick={(e)=>{
-            e.preventDefault();
-            this.setState({
-              mode: 'welcome'
-            });
-          }}>
-
-            {this.state.subject.title}</a>
-          </h1>
-        <p>{this.state.subject.desc}</p>
-      </header>
-
-        <Mynav data={this.state.menus}/>
+        <Myheader title={this.state.subject.title} desc={this.state.subject.desc} onChangePage={function(wc){
+          this.setState({mode:wc})
+        }.bind(this)}/>
+        <Mynav data={this.state.menus} onChangePage={(id)=>{
+          this.setState({
+            mode:'read',
+            selected_id:Number(id)
+          })
+          }}/>
         <Myarticle subtit={_title} content={_desc}/>
        </div>
     );
