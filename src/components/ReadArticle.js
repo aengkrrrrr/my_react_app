@@ -1,8 +1,8 @@
 import { Component } from 'react';
 
-class Myarticle extends Component {
+class ReadArticle extends Component {
   render(){
-    console.log("Myarticle 실행");
+    console.log("ReadArticle 실행");
     return (
     <section>
       <article>
@@ -15,4 +15,4 @@ class Myarticle extends Component {
 }
 
 
-export default Myarticle;
+export default ReadArticle;

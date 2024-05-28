@@ -2,7 +2,9 @@ import { Component,setState } from 'react';
 import './App.css';
 import Myheader from './components/Myheader';
 import Mynav from './components/Mynav';
-import Myarticle from './components/Myarticle';
+import ReadArticle from './components/ReadArticle';
+import Controls from './components/controls';
+import CreateArticle from './components/CreateArticle';
 
 
 // 클래스 버전
@@ -28,12 +30,14 @@ class App extends Component {
     };
   }
 
-  render(){
+  render() {
     console.log("App 실행");
-   let _title, _desc =null;
+   let _title, _desc, _article =null;
    if(this.state.mode === 'welcome'){
     _title = this.state.welcome.subtit;
     _desc = this.state.welcome.content;
+    _article = <ReadArticle subtit={_title} content={_desc}/>;
+
    } else if(this.state.mode === 'read') {
     let i=0;
     while(i<this.state.menus.length){
@@ -44,21 +48,37 @@ class App extends Component {
       }
       i++;
     }
-
+    _article = <ReadArticle subtit={_title} content={_desc}/>;
+   } else if(this.state.mode === 'create'){
+    _article = <CreateArticle/>
    }
     return (
       <div className="App">
         <Myheader title={this.state.subject.title} desc={this.state.subject.desc} onChangePage={function(wc){
           this.setState({mode:wc})
         }.bind(this)}/>
+
         <Mynav data={this.state.menus} onChangePage={(id)=>{
           this.setState({
             mode:'read',
             selected_id:Number(id)
           })
           }}/>
-        <Myarticle subtit={_title} content={_desc}/>
+
+        
+        {_article}
+
+        <hr/>
+
+        <Controls onChangeMode={(id)=>{
+          this.setState({
+            mode:id
+
+          })
+        }}/>
+
        </div>
+       
     );
   }
 }
