@@ -1,6 +1,13 @@
 import { Component } from 'react';
 
 class Mynav extends Component {
+  shouldComponentUpdate(nextProps, stateProps){
+    console.log('shouldComponentUpdate 작동', this.props.data, nextProps.data);
+    if(this.props.data === nextProps.data){
+      return false;
+    }
+    return true;
+  }
   render(){
     console.log("Mynav 실행");
     let lists = [];
